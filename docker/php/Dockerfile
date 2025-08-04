@@ -25,8 +25,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Mengatur working directory ke direktori aplikasi
 WORKDIR /var/www/html
 
-# Mengatur user kontainer untuk menghindari masalah izin
-RUN addgroup -S app && adduser -S app -G app
-RUN chown -R app:app /var/www/html
+# Ganti ownership direktori ke user non-root
+RUN chown -R www-data:www-data /var/www/html
 
-USER app
+# Atur permissions
+RUN chmod -R 775 /var/www/html
+
+# Perintah untuk menjalankan aplikasi
+CMD ["php-fpm"]
