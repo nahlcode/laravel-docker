@@ -1,0 +1,53 @@
+services:
+  # Layanan Nginx
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - "8080:80"  # Memetakan port 8080 host ke port 80 kontainer
+    volumes:
+      - ./app:/var/www/html  # Memetakan direktori aplikasi ke direktori www kontainer
+      - ./docker/nginx:/etc/nginx/conf.d  # Memetakan konfigurasi Nginx kustom
+    depends_on:
+      - php # Nginx bergantung pada PHP
+    restart: always
+
+  # Layanan PHP-FPM
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: php
+    volumes:
+      - ./app:/var/www/html
+    restart: always
+
+  # Layanan MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password  # Mengatur password root
+      MYSQL_DATABASE: laravel_db    # Mengatur nama database awal
+    volumes:
+      - mysql-data:/var/lib/mysql  # Volume untuk menyimpan data database secara persisten
+    restart: always
+
+  # Layanan PHPMyAdmin
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql           # Host PHPMyAdmin adalah nama layanan MySQL
+      MYSQL_ROOT_PASSWORD: password
+    depends_on:
+      - mysql
+    restart: always
+
+# Volume untuk menyimpan data MySQL secara permanen
+volumes:
+  mysql-data:
