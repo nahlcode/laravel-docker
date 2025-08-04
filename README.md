@@ -10,12 +10,13 @@ Sebelum memulai, pastikan telah menginstal Docker dan Docker Compose di sistem R
 Pertama, buat struktur direktori yang diminta. Ini akan menjadi fondasi proyek Anda.
 
 Sekarang, Kita memiliki struktur dasar sebagai berikut:
-
+<code>
 laravel-docker/
 ├── docker/
 │   ├── nginx/
 │   └── php/
 └── docker-compose.yml (belum dibuat)
+</code>
 
 **Langkah 2: Menyiapkan File Konfigurasi Docker**
 Selanjutnya, kita akan membuat tiga file konfigurasi utama: docker-compose.yml, docker/nginx/default.conf, dan docker/php/Dockerfile. 
@@ -27,28 +28,32 @@ Kita dapat menyalin kode yang disediakan di bagian selanjutnya ke dalam file-fil
 **Langkah 3: Menjalankan Kontainer**
 Setelah semua file konfigurasi disiapkan, navigasi ke direktori laravel-docker dan jalankan perintah berikut:
 
-docker compose up -d
+<code>docker compose up -d</code>
 
 Perintah ini akan membangun image PHP dari Dockerfile dan menjalankan semua kontainer di latar belakang. Mungkin perlu beberapa saat untuk selesai saat pertama kali dijalankan.
 
 **Langkah 4: Menginstal Laravel**
 Kontainer php sudah berjalan, tetapi belum ada aplikasi Laravel. Gunakan perintah berikut untuk masuk ke dalam kontainer php dan menginstal Laravel.
 
+<code>
 docker exec -it php sh
 composer create-project laravel/laravel .
 exit
+</code>
 
 Perintah composer create-project akan mengunduh semua dependensi Laravel. Setelah selesai, ketik exit untuk keluar dari kontainer PHP.
 
 **Langkah 5: Mengonfigurasi Koneksi Database**
 Setelah Laravel terinstal, Kita perlu mengonfigurasi koneksi database di file .env. Buka file .env yang baru dibuat di direktori app/ dan ubah bagian database menjadi:
 
+<code>
 DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=root
 DB_PASSWORD=password
+</code>
 
 Catatan: DB_HOST disetel ke mysql karena ini adalah nama layanan yang kita definisikan di docker-compose.yml.
 
