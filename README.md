@@ -17,8 +17,7 @@ laravel-docker/
 │   └── php/
 └── docker-compose.yml (belum dibuat)
 
-**Langkah 2: Menyiapkan File Konfigurasi Docker
-**
+**Langkah 2: Menyiapkan File Konfigurasi Docker**
 Selanjutnya, kita akan membuat tiga file konfigurasi utama: docker-compose.yml, docker/nginx/default.conf, dan docker/php/Dockerfile. 
 - File docker-compose.yml: File ini akan mendefinisikan empat layanan kontainer (web server Nginx, PHP, database MySQL, dan PHPMyAdmin) dan bagaimana mereka saling terhubung. 
 - File docker/nginx/default.conf: Konfigurasi Nginx untuk mengarahkan permintaan ke aplikasi Laravel.
@@ -31,8 +30,8 @@ Setelah semua file konfigurasi disiapkan, navigasi ke direktori laravel-docker d
 docker compose up -d
 
 Perintah ini akan membangun image PHP dari Dockerfile dan menjalankan semua kontainer di latar belakang. Mungkin perlu beberapa saat untuk selesai saat pertama kali dijalankan.
-**
-Langkah 4: Menginstal Laravel**
+
+**Langkah 4: Menginstal Laravel**
 Kontainer php sudah berjalan, tetapi belum ada aplikasi Laravel. Gunakan perintah berikut untuk masuk ke dalam kontainer php dan menginstal Laravel.
 
 docker exec -it php sh
