@@ -56,7 +56,7 @@ RUN sed -i 's/user = apache/user = www-data/g' /etc/php-fpm.d/www.conf && \
 USER www-data
 
 # Menyalin skrip entrypoint ke dalam kontainer dan membuatnya executable
-COPY ./docker/php/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Mengekspos port PHP-FPM
