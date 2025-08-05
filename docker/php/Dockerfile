@@ -3,15 +3,15 @@
 # Menggunakan image Rocky Linux 9 sebagai base image
 FROM rockylinux:9
 
-# Menginstal dependensi sistem dan repositori Remi untuk PHP 8.2
+# Menginstal dependensi sistem dan repositori Remi untuk PHP 8.4
 # Remi repository menyediakan versi PHP terbaru untuk RHEL/CentOS/Rocky Linux
 RUN dnf update -y && \
     dnf install -y epel-release && \
-    dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm && \
+    dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm && \
     # Reset modul PHP untuk memastikan versi Remi digunakan
     dnf module reset php -y && \
-    # Mengaktifkan modul PHP 8.2 dari repositori Remi
-    dnf module enable php:remi-8.2 -y && \
+    # Mengaktifkan modul PHP 8.4 dari repositori Remi
+    dnf module enable php:remi-8.4 -y && \
     # Menginstal PHP-FPM dan ekstensi yang dibutuhkan Laravel
     dnf install -y \
         php-fpm \
