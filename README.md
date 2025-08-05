@@ -7,7 +7,12 @@ Panduan ini akan memandu kita dalam penyiapan lingkungan pengembangan Laravel me
 Sebelum memulai, pastikan telah menginstal Docker dan Docker Compose di sistem Rocky Linux.
 
 **Langkah 1: Membuat Struktur Direktori Proyek:**
-Pertama, buat struktur direktori yang diminta. Ini akan menjadi fondasi proyek Anda.
+Pertama, buat struktur direktori pengembangan. Ini akan menjadi fondasi proyek kita.
+<code>
+mkdir -p laravel-docker/docker/nginx
+mkdir -p laravel-docker/docker/php
+cd laravel-docker
+</code>
 
 Sekarang, Kita memiliki struktur dasar sebagai berikut:
 <code>
