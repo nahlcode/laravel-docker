@@ -1,4 +1,4 @@
-# laravel-docker-rockylinux
+# Laravel Docker RockyLinux/Fedora/CentOS
 Setup Lingkungan Pengembangan Laravel dengan Docker di Rocky Linux
 
 Panduan ini akan memandu kita dalam penyiapan lingkungan pengembangan Laravel menggunakan Docker di Rocky Linux, sesuai dengan struktur proyek yang kita berikan.
