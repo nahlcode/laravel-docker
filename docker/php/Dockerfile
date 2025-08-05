@@ -25,11 +25,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Mengatur working directory ke direktori aplikasi
 WORKDIR /var/www/html
 
-# Ganti ownership direktori ke user non-root
+# Mengatur user kontainer ke www-data, yang merupakan user umum untuk web server
+# dan PHP-FPM di banyak distribusi Linux.
+# Pastikan user www-data dan group www-data ada.
+RUN addgroup -g 82 -S www-data && adduser -u 82 -D -S -G www-data www-data
+
+# Mengubah kepemilikan direktori aplikasi ke www-data
 RUN chown -R www-data:www-data /var/www/html
 
-# Atur permissions
-RUN chmod -R 775 /var/www/html
-
-# Perintah untuk menjalankan aplikasi
-CMD ["php-fpm"]
+# Mengatur user kontainer ke www-data
+USER www-data
